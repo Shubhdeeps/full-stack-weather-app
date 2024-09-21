@@ -50,6 +50,6 @@ content-type: application/json
 {
  "lat": 52.52,
  "lon": 14.41,
- "start_date": 1726911239,
- "end_date": 1726911400
+ "start_date": 1726928886,
+ "end_date": 1726928887
 }

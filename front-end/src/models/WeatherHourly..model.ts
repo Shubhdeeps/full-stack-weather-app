@@ -4,8 +4,8 @@ export interface WeatherHourlyModel {
   apparent_temperature: ApparentTemperature;
   is_day: boolean;
   precipitation: string;
-  precipitation_probability: string;
-  relative_humidity_2m: string;
+  precipitation_probability: number;
+  relative_humidity_2m: number;
   time: Time;
   uv_index: number;
   visibility: Visibility;
