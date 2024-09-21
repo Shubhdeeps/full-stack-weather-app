@@ -1,0 +1,51 @@
+
+# Future forecase
+GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m HTTP/1.1
+content-type: application/json
+
+# Include past days
+###
+GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&past_days=3&temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m  HTTP/1.1
+content-type: application/json
+
+# Historical 
+###
+GET https://archive-api.open-meteo.com/v1/era5?latitude=52.52&longitude=13.41&start_date=2021-01-01&end_date=2021-12-31&hourly=temperature_2m
+content-type: application/json
+
+
+### 
+GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,visibility,uv_index,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max&forecast_days=1
+content-type: application/json
+
+# Hourly
+### 
+GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,visibility,uv_index,is_day
+content-type: application/json
+
+
+# Daily
+### 
+GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max&forecast_days=7&timeformat=unixtime
+content-type: application/json
+
+###
+GET http://localhost:8080/daily
+content-type: application/json
+
+{
+ "lat": 52.52,
+ "lon": 14.41,
+ "no_of_days": 2
+}
+
+###
+GET http://localhost:8080/hourly
+content-type: application/json
+
+{
+ "lat": 52.52,
+ "lon": 14.41,
+ "start_date": 1726911239,
+ "end_date": 1726911400
+}
