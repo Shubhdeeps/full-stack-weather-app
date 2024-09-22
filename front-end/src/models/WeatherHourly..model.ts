@@ -9,6 +9,8 @@ export interface WeatherHourlyModel {
   time: Time;
   uv_index: number;
   visibility: Visibility;
-  weather_code: number;
-  weather_name: string;
+  weather_code: {
+    code: number;
+    name: string;
+  };
 }

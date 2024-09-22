@@ -8,15 +8,32 @@ import SunStatusCard from "../Card/SunStatusCard";
 import UnIndexCard from "../Card/UnIndexCard";
 import WindSpeedCard from "../Card/WindSpeedCard";
 import WindDirection from "../Card/WindDirection";
+import { Time } from "../../models/common.types";
 
 type Props = {
-  currentWeather: WeatherCurrentModel;
+  currentWeather?: WeatherCurrentModel;
   hourlyWeather: WeatherHourlyModel[];
+  sunrise: Time;
+  sunset: Time;
 };
 export default function HighlightsContainer({
   currentWeather,
   hourlyWeather,
+  sunrise,
+  sunset,
 }: Props) {
+  if (!currentWeather) {
+    return (
+      <BaseCardWrapper
+        className="w-full h-[380px]"
+        pattern="patternC"
+        patternClass="bg-pattern-d/50"
+      >
+        <div>Loading...</div>
+      </BaseCardWrapper>
+    );
+  }
+
   return (
     <BaseCardWrapper
       className="w-full h-[380px]"
@@ -34,12 +51,7 @@ export default function HighlightsContainer({
           children2={<PrecipitationChanceCard />}
         />
         <Column
-          children1={
-            <SunStatusCard
-              sunrise={currentWeather.sunrise}
-              sunset={currentWeather.sunset}
-            />
-          }
+          children1={<SunStatusCard sunrise={sunrise} sunset={sunset} />}
           children2={<UnIndexCard />}
         />
 

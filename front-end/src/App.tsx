@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { mockCurrent, MockDataDaily, MockDataHourly } from "./assets/mock";
 import CurrentWeatherCard from "./components/Card/CurrentWeatherCard";
 import GeoCodedCard from "./components/Card/GeoCodedCard";
 import ForecastContainer from "./components/Containers/ForecastContainer";
@@ -8,39 +6,32 @@ import Layout from "./components/Layout/Layout";
 import { useFetch } from "./hooks/useFetch";
 
 function App() {
-  const [setGeoCode] = useFetch();
+  const { currentWeather, dailyWeather, hourlyWeather, geoCode } = useFetch();
+  console.log({ currentWeather, dailyWeather, hourlyWeather });
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log("start fetchibg,,,");
-      setGeoCode({
-        admin1_id: 2950157,
-        country: "Germany",
-        country_code: "DE",
-        country_id: 2921044,
-        elevation: 74.0,
-        feature_code: "PPLC",
-        id: 2950159,
-        latitude: 52.52437,
-        longitude: 13.41053,
-        name: "Berlin",
-        timezone: "Europe/Berlin",
-      });
-    }, 5000);
-  }, []);
+  if (!currentWeather || dailyWeather.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Layout>
       <div className="flex flex-col gap-6">
         <div className="flex gap-6">
-          <CurrentWeatherCard data={mockCurrent} />
+          <CurrentWeatherCard
+            city={geoCode!.name}
+            country={geoCode!.country}
+            data={currentWeather}
+          />
           <HighlightsContainer
-            currentWeather={mockCurrent}
-            hourlyWeather={MockDataHourly}
+            currentWeather={currentWeather}
+            hourlyWeather={hourlyWeather}
+            sunrise={dailyWeather[0].sunrise}
+            sunset={dailyWeather[0].sunset}
           />
         </div>
         <div className="text-white font-medium text-lg">7 days Forecast</div>
         <div className="flex gap-6  h-[200px]">
-          <ForecastContainer forecastItems={MockDataDaily} />
+          <ForecastContainer forecastItems={dailyWeather} />
           <GeoCodedCard />
         </div>
       </div>

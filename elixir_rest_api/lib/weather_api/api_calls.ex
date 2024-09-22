@@ -32,8 +32,8 @@ defmodule WeatherApi.APICalls do
     url =  @base_url <> "latitude=#{lat}&longitude=#{lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m"
     WeatherApi.HandleApi.handle(url)
     |> Map.get("current")
+    |> WeatherApi.ProcessData.process_current()
     |> WeatherApi.HandleApi.json_fy()
-
   end
 
   def get_geo_coding(text) do

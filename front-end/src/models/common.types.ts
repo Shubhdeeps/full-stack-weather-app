@@ -26,3 +26,5 @@ export type Visibility = {
   distance_in_km: number;
   distance_in_meter: number;
 };
+
+export type Temperature = { in_c: number; in_f: number };

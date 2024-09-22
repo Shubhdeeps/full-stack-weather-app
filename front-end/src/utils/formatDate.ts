@@ -23,7 +23,6 @@ export function formatDate(unix: EpochTimeStamp) {
 export function formatTimeFromUnix(unix: EpochTimeStamp) {
   const now = new Date();
   now.setTime(unix * 1000);
-
   const hours = now.getHours().toString().padStart(2, "0");
   const minutes = now.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;

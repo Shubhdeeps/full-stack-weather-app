@@ -39,6 +39,13 @@ GET https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=
 content-type: application/json
 
 ###
+POST http://localhost:8080/
+
+{
+ "lat": 52.52,
+ "lon": 14.41,
+}
+###
 GET http://localhost:8080/daily
 content-type: application/json
 
@@ -48,7 +55,7 @@ content-type: application/json
  "no_of_days": 2
 }
 ###
-GET http://localhost:8080/current_weather
+POST  http://localhost:8080/current_weather
 content-type: application/json
 
 {

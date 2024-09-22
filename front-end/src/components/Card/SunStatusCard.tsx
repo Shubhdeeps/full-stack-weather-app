@@ -1,8 +1,9 @@
-import { WeatherCurrentModel } from "../../models/WeatherCurrent.model";
 import BaseCardWrapper from "./BaseCardWrapper";
 import sun from "../../assets/svg/sun-hot.svg";
+import { WeatherDailyModel } from "../../models/WeatherDaily.model";
+import { formatTimeFromUnix } from "../../utils/formatDate";
 
-type Props = Pick<WeatherCurrentModel, "sunrise" | "sunset">;
+type Props = Pick<WeatherDailyModel, "sunrise" | "sunset">;
 export default function SunStatusCard({ sunrise, sunset }: Props) {
   return (
     <BaseCardWrapper
@@ -14,8 +15,16 @@ export default function SunStatusCard({ sunrise, sunset }: Props) {
       </div>
       <div className="h-full w-full grid place-items-end">
         <div className="w-full flex flex-row items-center justify-between">
-          <TimeState timeStr="5:30 AM" title="Sunrise" align="items-start" />
-          <TimeState timeStr="7:00 PM" title="Sunset" align="items-end" />
+          <TimeState
+            timeStr={formatTimeFromUnix(sunrise.unix)}
+            title="Sunrise"
+            align="items-start"
+          />
+          <TimeState
+            timeStr={formatTimeFromUnix(sunset.unix)}
+            title="Sunset"
+            align="items-end"
+          />
         </div>
       </div>
     </BaseCardWrapper>

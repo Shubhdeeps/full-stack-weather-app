@@ -58,7 +58,7 @@ defmodule WeatherApi.FormatVariables do
     }
   end
   defp format_percentage(value) do
-     "#{value}%"
+     value
   end
   defp format_upcoming_hours(value) do
 
@@ -109,7 +109,11 @@ defmodule WeatherApi.FormatVariables do
       99 => "Heavy Hail"
     }
 
-    map[wmo] || "unknown"
+    %{
+      code: wmo,
+      name:  map[wmo] || "unknown"
+    }
+
   end
 
   defp format_temperature(temp) do

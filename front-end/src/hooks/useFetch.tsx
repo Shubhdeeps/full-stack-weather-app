@@ -12,15 +12,10 @@ const baseURL = "http://localhost:8080";
 export function useFetch() {
   const [currentWeather, setCurrentWeather] = useAtom(currentWeatherAtom);
   const [hourlyWeather, setHourlyWeather] = useAtom(hourlyWeatherAtom);
-  const [geoCode, setGeoCode] = useAtom(currentGeolocationAtom);
+  const [geoCode] = useAtom(currentGeolocationAtom);
   const [dailyWeather, setDailyWeather] = useAtom(dailyWeatherAtom);
 
   useEffect(() => {
-    // (async () => {
-    //   const data = await axios.get(`${baseURL}/`);
-    //   console.log(data.data, data.status);
-    // })();
-
     if (geoCode) {
       // Geo code change -> fetch fresh data
       const requestBodyBase = {
@@ -28,15 +23,43 @@ export function useFetch() {
         lon: geoCode.longitude,
       };
 
-      (async () => {
-        const currentW = await axios.post(`${baseURL}/current_weather`, {
-          ...requestBodyBase,
-        });
+      const today = Math.floor(Date.now() / 1000);
+      const promise1 = axios.post(`${baseURL}/current_weather`, {
+        ...requestBodyBase,
+      });
 
-        console.log(currentW.data);
+      const promise2 = axios.post(`${baseURL}/daily`, {
+        ...requestBodyBase,
+        no_of_days: 7,
+      });
+      const promise3 = axios.post(`${baseURL}/hourly`, {
+        ...requestBodyBase,
+        start_date: today,
+        end_date: today + 10,
+      });
+      (async () => {
+        const [resp1, resp2, resp3] = await Promise.all([
+          promise1,
+          promise2,
+          promise3,
+        ]);
+        setCurrentWeather(resp1.data);
+        setDailyWeather(resp2.data);
+        setHourlyWeather(resp3.data);
       })();
     }
-  }, [geoCode, geoCode?.id]);
+  }, [
+    geoCode,
+    geoCode?.id,
+    setCurrentWeather,
+    setDailyWeather,
+    setHourlyWeather,
+  ]);
 
-  return [setGeoCode];
+  return {
+    geoCode,
+    currentWeather,
+    hourlyWeather,
+    dailyWeather,
+  } as const;
 }

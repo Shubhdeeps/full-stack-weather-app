@@ -7,15 +7,15 @@ type Props = {
 };
 export default function ForecastCard({ weatherForecast }: Props) {
   const svgWeatherIcon =
-    wmoCodeAndSVG["true"][weatherForecast.weather_code as 2];
+    wmoCodeAndSVG["true"][weatherForecast.weather_code.code as 2];
   return (
-    <BaseCardWrapper className="h-full w-[300px]" pattern="patternCyan">
+    <BaseCardWrapper className="h-full min-w-[300px]" pattern="patternCyan">
       <div className="">
         <div className="flex flex-row items-center justify-between">
           <img src={svgWeatherIcon} width={90} height={90} />
           <div className="flex flex-col items-end">
             <div className="text-pattern-a font-medium">
-              {weatherForecast.weather_name}
+              {weatherForecast.weather_code.name}
             </div>
             <div>{formatDate(weatherForecast.time.unix)}</div>
           </div>
