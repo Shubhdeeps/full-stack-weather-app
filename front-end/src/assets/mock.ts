@@ -123,23 +123,6 @@ export const mockCurrent: WeatherCurrentModel = {
   surface_pressure: 1017.5,
   wind_speed_10m: 10.8,
   wind_direction_10m: 105,
-  weather_name: "Partly cloudy",
-  location: "Tallinn, Estonia",
-  date_string: "22 June, 2024 5:01AM",
-  sunrise: {
-    format: "unix",
-    unix: 1726894054,
-    event_in_days: -0.0,
-    event_in_hours: -8.0,
-    event_in_seconds: -32176,
-  },
-  sunset: {
-    format: "unix",
-    unix: 1726938167,
-    event_in_days: 1.0,
-    event_in_hours: 4.0,
-    event_in_seconds: 11937,
-  },
 };
 
 export const MockDataDaily: WeatherDailyModel[] = [

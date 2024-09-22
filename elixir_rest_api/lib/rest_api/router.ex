@@ -3,7 +3,10 @@ defmodule RestApi.Router do
 
   plug(Plug.Logger)
 
+  plug Corsica, origins: "*"
   plug(:match)
+
+
 
   plug(Plug.Parsers, parsers: [:json], pass: ["application/json"], json_decoder: Jason)
 
@@ -29,10 +32,10 @@ defmodule RestApi.Router do
     send_resp(conn, 200, response_json)
   end
 
-  get "/current_weather" do
+  post "/current_weather" do
     {:ok, body, _conn} = Plug.Conn.read_body(conn)
+    IO.inspect(body)
     {:ok, resp} = Jason.decode(body)
-
     response_json = WeatherApi.APICalls.get_current_day(Map.get(resp, "lat"), Map.get(resp, "lon"));
 
     send_resp(conn, 200, response_json)

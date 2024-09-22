@@ -26,7 +26,8 @@ defmodule RestApi.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:plug_cowboy, "~> 2.5"},
       {:jason, "~> 1.3"},
-      {:httpoison, "~> 2.0"}
+      {:httpoison, "~> 2.0"},
+      {:corsica, "~> 2.1"}
     ]
   end
 end
