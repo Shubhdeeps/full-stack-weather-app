@@ -1,11 +1,11 @@
 # Fullstack Weather Application
 
-This project is a fullstack weather application built using React.js on the frontend and Elixir on thebackend. It leverages TypeScript for strong typing and Tailwind CSS for a utility-first styling approach.
+This project is a fullstack weather application built using React.js on the frontend and Elixir on the backend. It leverages TypeScript for strong typing and Tailwind CSS for a utility-first styling approach.
 
 ## Key Technologies
 
 - **Frontend:** React.js, TypeScript, Tailwind CSS
-- **Backend:** Elixir
+- **Backend:** Elixir, Plug cowboy server, Jason, HTTPoison
 
 ## Installation
 
