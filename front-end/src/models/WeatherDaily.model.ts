@@ -23,7 +23,8 @@ export interface WeatherDailyModel {
   time: Time;
   uv_index_clear_sky_max: number;
   uv_index_max: number;
-  weather_code: string;
+  weather_code: number;
+  weather_name: string;
   wind_gusts_10m_max: WindSpeed;
   wind_speed_10m_max: WindSpeed;
 }

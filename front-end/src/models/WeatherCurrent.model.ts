@@ -1,3 +1,5 @@
+import { Time } from "./common.types";
+
 export interface WeatherCurrentModel {
   time: number;
   interval: number;
@@ -17,4 +19,6 @@ export interface WeatherCurrentModel {
   weather_name: string;
   location: string;
   date_string: string;
+  sunrise: Time;
+  sunset: Time;
 }

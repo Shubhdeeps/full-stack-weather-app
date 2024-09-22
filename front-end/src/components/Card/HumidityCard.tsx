@@ -1,18 +1,25 @@
-import { MockDataHourly } from "../../assets/mock";
+import { WeatherHourlyModel } from "../../models/WeatherHourly..model";
 import Chart from "../Charts/Chart";
-import PercentageTypography from "../Typography/PercentageTypography";
+import UnitTypography from "../Typography/UnitTypography";
 import BaseCardWrapper from "./BaseCardWrapper";
 
-export default function HumidityCard() {
+type Props = {
+  weatherHourly: WeatherHourlyModel[];
+  currentHumidity: number;
+};
+export default function HumidityCard({
+  weatherHourly,
+  currentHumidity,
+}: Props) {
   return (
-    <BaseCardWrapper className="w-[300px] h-full" pattern="patternC">
+    <BaseCardWrapper className=" h-full" pattern="patternC">
       <div className="flex flex-col h-full">
-        <div className="text-lg font-medium">Humidity</div>
-        <PercentageTypography percentage={37} />
+        <div className="text-lg font-medium text-gray-300">Humidity</div>
+        <UnitTypography unit="" value={currentHumidity} />
 
         <div className="mt-auto">
           <Chart
-            chartArray={MockDataHourly.map((item) => {
+            chartArray={weatherHourly.map((item) => {
               return {
                 hour: item.time.event_in_hours,
                 percentage: item.relative_humidity_2m,
