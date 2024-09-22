@@ -20,11 +20,29 @@ defmodule RestApi.Router do
     response_json = WeatherApi.APICalls.get_daily(Map.get(resp, "lat"), Map.get(resp, "lon"), Map.get(resp, "no_of_days"))
     send_resp(conn, 200, response_json)
   end
+
   get "/hourly" do
     {:ok, body, _conn} = Plug.Conn.read_body(conn)
     {:ok, resp} = Jason.decode(body)
     response_json = WeatherApi.APICalls.get_hourly(Map.get(resp, "lat"), Map.get(resp, "lon"), Map.get(resp, "start_date"), Map.get(resp, "end_date"))
 
+    send_resp(conn, 200, response_json)
+  end
+
+  get "/current_weather" do
+    {:ok, body, _conn} = Plug.Conn.read_body(conn)
+    {:ok, resp} = Jason.decode(body)
+
+    response_json = WeatherApi.APICalls.get_current_day(Map.get(resp, "lat"), Map.get(resp, "lon"));
+
+    send_resp(conn, 200, response_json)
+  end
+
+
+  get "/geo-coding" do
+    {:ok, body, _conn} = Plug.Conn.read_body(conn)
+    {:ok, resp} = Jason.decode(body)
+    response_json = WeatherApi.APICalls.get_geo_coding(Map.get(resp, "search-text"))
     send_resp(conn, 200, response_json)
   end
 

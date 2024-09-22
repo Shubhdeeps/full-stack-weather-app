@@ -3,10 +3,6 @@ defmodule WeatherApi.ProcessData do
     loop([], key_values_map, -1, %{}, [])
   end
 
-  # def loop([], key_values_map, count, %{}, response_list) do
-  #   loop(Map.keys(key_values_map), key_values_map, count + 1, %{}, response_list)
-  # end
-
   def loop([], key_values_map, count, cache_map, response_list) do
     loop(Map.keys(key_values_map), key_values_map, count + 1, %{}, [cache_map | response_list])
   end
