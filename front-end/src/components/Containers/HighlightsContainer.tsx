@@ -48,7 +48,11 @@ export default function HighlightsContainer({
               weatherHourly={hourlyWeather}
             />
           }
-          children2={<PrecipitationChanceCard />}
+          children2={
+            <PrecipitationChanceCard
+              precipitation={currentWeather.precipitation}
+            />
+          }
         />
         <Column
           children1={<SunStatusCard sunrise={sunrise} sunset={sunset} />}

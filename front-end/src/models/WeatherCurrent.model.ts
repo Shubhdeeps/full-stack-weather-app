@@ -7,7 +7,7 @@ export interface WeatherCurrentModel {
   relative_humidity_2m: number;
   apparent_temperature: Temperature;
   is_day: boolean;
-  precipitation: string;
+  precipitation: number;
   rain: number;
   showers: number;
   snowfall: number;

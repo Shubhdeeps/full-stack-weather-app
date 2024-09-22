@@ -74,7 +74,7 @@ defmodule WeatherApi.FormatVariables do
 
   # rain in mm
   defp format_sum(value) do
-    "#{value}mm"
+    value
   end
 
   defp wmo_code_decoder(wmo) do

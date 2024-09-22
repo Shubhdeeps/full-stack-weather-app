@@ -15,7 +15,9 @@ function App() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 my-20">
+        <div className="text-white font-medium text-lg">Weather</div>
+
         <div className="flex gap-6">
           <CurrentWeatherCard
             city={geoCode!.name}

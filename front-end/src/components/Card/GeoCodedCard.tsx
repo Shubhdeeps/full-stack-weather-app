@@ -17,9 +17,9 @@ export default function GeoCodedCard() {
 
   return (
     <BaseCardWrapper className="w-[340px] h-full" pattern="patternCyan">
-      <div>
+      <div className="mx-auto">
         <input
-          className="outline-none bg-transparent outline-gray-500 rounded-lg px-2"
+          className="outline-none bg-transparent outline-gray-500 rounded-lg px-2 w-full mb-2"
           value={searchText}
           placeholder="Search location"
           onChange={(e) => setText(e.target.value)}
